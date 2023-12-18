@@ -1,14 +1,15 @@
-package com.google.service;
+package com.google.service.impl;
 
 import com.google.entities.EmployeeEntity;
 import com.google.persistence.EmployeeRepository;
+import com.google.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
