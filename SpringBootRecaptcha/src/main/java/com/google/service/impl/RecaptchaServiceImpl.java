@@ -1,5 +1,6 @@
 package com.google.service.impl;
 
+import com.google.controller.response.RecaptchaResponse;
 import com.google.service.RecaptchaService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
@@ -19,6 +20,12 @@ public class RecaptchaServiceImpl implements RecaptchaService {
         request.add("secret", RECAPTCHA_SECRET);
         request.add("response", captcha);
 
-        return false;
+        RecaptchaResponse apiResponse = restTemplate.postForObject(GOOGLE_RECAPTCHA_ENDPOINT, request, RecaptchaResponse.class);
+
+        if(apiResponse == null)
+        {
+            return false;
+        }
+        return Boolean.TRUE.equals(apiResponse.getSuccess());
     }
 }
